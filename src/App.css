@@ -3,5 +3,10 @@ body {
 	padding: 20px 80px;
 }
 
+a {
+	text-decoration: none;
+	color: black;
+}
+
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
