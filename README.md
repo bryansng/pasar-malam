@@ -2,7 +2,7 @@
 
 <!-- ![Alt text](/readme-resources/img/full_overview.png "App Overview")
 
-Front-end developed using React. Back-end via Node.js and Express. User info stored in PostgresSQL. Face Recognition using [Clarifai](https://www.clarifai.com/)'s Face Detect API. Deployed using Heroku.
+Front-end developed using React & Redux. User authentication details stored in Firebase Auth. Payment system done using Stripe. Deployed using Heroku.
 
 ![Alt text](/readme-resources/img/system-design.png "System Design")
 
@@ -15,9 +15,12 @@ Front-end developed using React. Back-end via Node.js and Express. User info sto
 3. Press enter or click the Detect button.
 
 ### NOTE:
-1. The database stores only your hashed password, email and name that you provided.
-2. It can detect multiple faces.
+1. Emails and passwords are handled by Google's Firebase. All authentication information is handled by Google.
+
+&nbsp;
+## To Dos
+- Remove local storage of cart items when user signs out. Or attach it to user's firestore document via Firebase Firestore.
 
 &nbsp;
 ## Acknowledgments
-- [Andrei Neagoie](https://www.udemy.com/the-complete-web-developer-zero-to-mastery/) -->
+- [Andrei Neagoie & Yihua Zhang](https://www.udemy.com/complete-react-developer-zero-to-mastery/) -->
