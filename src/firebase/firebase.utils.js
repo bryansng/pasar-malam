@@ -14,6 +14,8 @@ const config = {
 	appId: "1:1055346882910:web:16f2ede947781390"
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	// if sign out ignore.
 	if (!userAuth) return;
@@ -41,7 +43,37 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 }
 
-firebase.initializeApp(config);
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+	const collectionRef = firestore.collection(collectionKey);
+	
+	const batch = firestore.batch();
+	objectsToAdd.forEach(obj => {
+		const newDocRef = collectionRef.doc();
+		batch.set(newDocRef, obj);
+	})
+
+	return await batch.commit();
+}
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+	const transformedCollection = collections.docs.map(docSnapshot => {
+		const { title, items } = docSnapshot.data();
+
+		// encodeURI - since routeName is going to be a URL, we encode any characters like spaces to be its encoding, %20.
+		return {
+			routeName: encodeURI(title.toLowerCase()),
+			id: docSnapshot.id,
+			title,
+			items
+		}
+	});
+
+	// array to map.
+	return transformedCollection.reduce((accumulator, collection) => {
+		accumulator[collection.title.toLowerCase()] = collection;
+		return accumulator;
+	}, {});
+}
 
 // auth is then used to make our app aware of authentication changes, i.e. new user signed in, user signed out.
 export const auth = firebase.auth();

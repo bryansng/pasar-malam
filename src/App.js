@@ -38,6 +38,9 @@ class App extends React.Component {
       } else {
         // setting it to null.
         setCurrentUser(userAuth);
+
+        // used to add SHOP_DATA to Firestore.
+        //addCollectionAndDocuments('collections', collectionsArray.map(({ title, items}) => ({ title, items })))
       }
     });
   }
